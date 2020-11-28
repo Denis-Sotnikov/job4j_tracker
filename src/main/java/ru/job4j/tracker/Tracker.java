@@ -39,21 +39,17 @@ public class Tracker {
         return ItemsWithoutNull;
     }
     public Item[] findByName(String key){
-        System.out.println("=============");
         Item[] ItemsNames = new Item[this.items.length];
         int count=0;
         for (int i = 0; i < this.items.length; i++) {
             if (this.items[i] !=null){
                 if (this.items[i].getName() != null){
-                    System.out.println(this.items[i].getName());
                     if (this.items[i].getName().equals(key)){
                         ItemsNames[count] = this.items[i];
                         count++;
                     }
                 }
-
             }
-
         }
         ItemsNames = Arrays.copyOf(ItemsNames, count);
         return ItemsNames;
