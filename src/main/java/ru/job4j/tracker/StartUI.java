@@ -12,5 +12,6 @@ public class StartUI {
         Tracker way = new Tracker();
         way.add(item);
         System.out.println(way.findById(1).getName());
+
     }
 }
