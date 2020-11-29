@@ -12,7 +12,6 @@ public class Tracker {
         items[size++] = item;
         return item;
     }
-
     public Item findById(int id) {
         /* Находим индекс */
         int index = indexOf(id);
@@ -52,7 +51,7 @@ public class Tracker {
     private int indexOf(int id) {
         int rsl = -1;
         for (int index = 0; index < size; index++) {
-            if (items[index].getId() == id) {
+            if (this.items[index].getId() == id) {
                 rsl = index;
                 break;
             }
@@ -70,5 +69,13 @@ public class Tracker {
             return false;
         }
 
+    }
+    public boolean delete(int id) {
+        int index = indexOf(id);
+        System.out.println("index = " + index);
+        //items[indexOf(id)] = null;
+        System.arraycopy(this.items, index+1, this.items, index, this.items.length-index-1);
+        size--;
+        return true;
     }
 }
