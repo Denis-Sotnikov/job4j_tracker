@@ -1,9 +1,9 @@
 package ru.job4j.oop;
 
 public class Battery {
-    private int charge;
+    private int load;
     public void exchange(Battery another){
-        this.charge--;
-        another.charge++;
+        another.load = another.load + this.load;
+        this.load = 0;
     }
 }
