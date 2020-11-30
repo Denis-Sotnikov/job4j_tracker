@@ -62,7 +62,6 @@ public class Tracker {
         else{
             return false;
         }
-
     }
     public boolean delete(int id) {
         int index = indexOf(id);
