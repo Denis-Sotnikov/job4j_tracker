@@ -4,6 +4,7 @@ public class College {
     public static void main(String[] args) {
         Freshman man = new Freshman();
         Student st = man;
-        Object ob = man;
+        Object ob = new Freshman();
+
     }
 }
