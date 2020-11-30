@@ -11,7 +11,8 @@ public class Matches {
         boolean flag = true;
         int count = 11;
         while (count>0){
-            player = flag==true?playerOne:playerTwo;
+            player = flag?playerOne:playerTwo;
+            flag = !flag;
             System.out.println("Спичек на столе " + count);
             System.out.println(player+", возьмите спички в количестве от 1 до 3");
             System.out.print("Введите количество спичек которое вы возьмете: ");
@@ -21,7 +22,6 @@ public class Matches {
                 select = Integer.valueOf(input.nextLine());
             }
             count = count - select;
-            flag = flag==true ? false : true;
         }
         System.out.println(player + " выиграл");
     }
