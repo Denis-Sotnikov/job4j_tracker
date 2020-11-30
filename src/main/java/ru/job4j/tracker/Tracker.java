@@ -59,9 +59,7 @@ public class Tracker {
             this.items[index] = item;
             return true;
         }
-        else{
             return false;
-        }
     }
     public boolean delete(int id) {
         int index = indexOf(id);
