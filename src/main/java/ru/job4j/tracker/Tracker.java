@@ -13,9 +13,7 @@ public class Tracker {
         return item;
     }
     public Item findById(int id) {
-        /* Находим индекс */
         int index = indexOf(id);
-        /* Если индекс найден возвращаем item, иначе null */
         return index != -1 ? items[index] : null;
     }
     public Item[] findAll(){
@@ -25,15 +23,12 @@ public class Tracker {
         Item[] itemsNames = new Item[this.items.length];
         int count=0;
         for (int i = 0; i < this.size; i++) {
-                if (this.items[i].getName() != null){
                     if (this.items[i].getName().equals(key)){
                         itemsNames[count] = this.items[i];
                         count++;
                     }
-                }
         }
-        itemsNames = Arrays.copyOf(itemsNames, count);
-        return itemsNames;
+        return Arrays.copyOf(itemsNames, count);
     }
     private int indexOf(int id) {
         int rsl = -1;
