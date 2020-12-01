@@ -17,17 +17,6 @@ public class StartUI {
             System.out.println("System error");
         }
     }
-    public static void replaceItem(Input input, Tracker tracker){
-        System.out.println("=== Edit item ====");
-        int id = Integer.valueOf(input.askStr("Enter id: "));
-        String name = input.askStr("Enter name: ");
-        Item item = new Item(name);
-        if (tracker.replace(id, item)) {
-            System.out.println("Item edit success");
-        } else {
-            System.out.println("System error");
-        }
-    }
     public static void findAll(Tracker tracker){
         System.out.println("=== Show all items ====");
         Item[] array = tracker.findAll();

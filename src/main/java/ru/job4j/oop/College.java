@@ -5,6 +5,5 @@ public class College {
         Freshman man = new Freshman();
         Student st = man;
         Object ob = new Freshman();
-
     }
 }
