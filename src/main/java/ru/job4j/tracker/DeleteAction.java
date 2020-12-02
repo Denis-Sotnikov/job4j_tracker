@@ -9,6 +9,11 @@ public class DeleteAction implements UserAction {
     @Override
     public boolean execute(Input input, Tracker tracker) {
         int id = Integer.valueOf(input.askStr("Enter id: "));
-        return tracker.delete(id);
+        if (tracker.delete(id)) {
+            System.out.println("Item delete success");
+        } else {
+            System.out.println("System error");
+        }
+        return true;
     }
 }
