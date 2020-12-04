@@ -4,7 +4,6 @@ package ru.job4j.tracker;
 
 public class StartUI {
     private final Output out;
-
     public StartUI(Output out) {
         this.out = out;
     }
