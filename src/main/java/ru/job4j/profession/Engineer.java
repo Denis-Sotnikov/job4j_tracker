@@ -1,7 +1,7 @@
 package ru.job4j.profession;
 
 public class Engineer extends Profession {
-    private int finishedProject;
+    private static int finishedProject;
     private String areaJob;
 
     public Engineer(String name, String surname, String education, String birthday, int finishedProject, String areaJob) {
@@ -14,7 +14,7 @@ public class Engineer extends Profession {
         super(name, surname, education, birthday);
     }
 
-    public int getFinishedProject() {
+    public static int getFinishedProject() {
         return finishedProject;
     }
 
