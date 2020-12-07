@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 
+import java.util.ArrayList;
 
 public class StartUI {
     private final Output out;
@@ -24,9 +25,9 @@ public class StartUI {
     }
     public static void findAll(Tracker tracker){
         System.out.println("=== Show all items ====");
-        Item[] array = tracker.findAll();
-        for (int i = 0; i < array.length; i++) {
-            System.out.println(array[i]);
+        ArrayList<Item> array = tracker.findAll();
+        for (int i = 0; i < array.size(); i++) {
+            System.out.println(array.get(i));
         }
     }
     public static void editItem(Input input, Tracker tracker){
@@ -54,34 +55,34 @@ public class StartUI {
     public static void findByName(Input input, Tracker tracker){
         System.out.println("=== Find items by name ====");
         String name = input.askStr("Enter name: ");
-        Item[] array = tracker.findByName(name);
-        if (array.length>0) {
-            for (int i = 0; i < array.length; i++) {
-                System.out.println(array[i].toString());
+        ArrayList<Item> array = tracker.findByName(name);
+        if (array.size()>0) {
+            for (int i = 0; i < array.size(); i++) {
+                System.out.println(array.get(i).toString());
             }
         } else {
             System.out.println("Заявки с таким именем не найдены");
         }
     }
 
-    public void init(Input input, Tracker tracker, UserAction[] actions) {
+    public void init(Input input, Tracker tracker, ArrayList<UserAction> actions) {
         boolean run = true;
         while (run) {
             this.showMenu(actions);
             int select = input.askInt("Select: ");
-            if (select < 0 || select >= actions.length) {
-                out.println("Wrong input, you can select: 0 .. " + (actions.length - 1));
+            if (select < 0 || select >= actions.size()) {
+                out.println("Wrong input, you can select: 0 .. " + (actions.size() - 1));
                 continue;
             }
-            UserAction action = actions[select];
+            UserAction action = actions.get(select);
             run = action.execute(input, tracker);
         }
     }
 
-    private void showMenu(UserAction[] actions) {
+    private void showMenu(ArrayList<UserAction> actions) {
         out.println("Menu.");
-        for (int index = 0; index < actions.length; index++) {
-            out.println(index + ". " + actions[index].name());
+        for (int index = 0; index < actions.size(); index++) {
+            out.println(index + ". " + actions.get(index).name());
         }
     }
 
@@ -89,11 +90,19 @@ public class StartUI {
         Output output = new ConsoleOutput();
         Input input = new ValidateInput(output, new ConsoleInput());
         Tracker tracker = new Tracker();
-        UserAction[] actions = {
-                new CreateAction(output), new DeleteAction(output),
-                new FindAllAction(output), new ReplaceItemAction(output),
-                new FindById(output), new FindByName(output), new ExitAction()
-        };
+        ArrayList<UserAction> actions = new ArrayList<>();
+        actions.add(new CreateAction(output));
+        actions.add(new DeleteAction(output));
+        actions.add(new FindAllAction(output));
+        actions.add(new ReplaceItemAction(output));
+        actions.add(new FindById(output));
+        actions.add(new FindByName(output));
+        actions.add(new ExitAction());
+//        UserAction[] actions = {
+//                new CreateAction(output), new DeleteAction(output),
+//                new FindAllAction(output), new ReplaceItemAction(output),
+//                new FindById(output), new FindByName(output), new ExitAction()
+//        };
         new StartUI(output).init(input, tracker, actions);
     }
 }
