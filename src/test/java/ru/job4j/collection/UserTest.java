@@ -27,7 +27,6 @@ public class UserTest {
                 .compareTo(
                         new User("Ivan", 31)
                 );
-        System.out.println(rsl);
         assertThat(rsl, greaterThan(0));
     }
 }
