@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertThat;
 
 public class ItemSortTest {
@@ -36,6 +35,20 @@ public class ItemSortTest {
         listExpected.add(new Item(1,"Viktoria"));
         listExpected.add(new Item(5,"Aleksandra"));
         Collections.sort(listItem);
+        assertThat(listItem, is(listExpected));
+    }
+
+    @Test
+    public void whenSortByIdGoDown(){
+        List<Item> listItem = new ArrayList<>();
+        listItem.add(new Item(0,"Olga"));
+        listItem.add(new Item(1,"Viktoria"));
+        listItem.add(new Item(5,"Aleksandra"));
+        List<Item> listExpected = new ArrayList<>();
+        listExpected.add(new Item(5,"Aleksandra"));
+        listExpected.add(new Item(1,"Viktoria"));
+        listExpected.add(new Item(0,"Olga"));
+        Collections.sort(listItem, Collections.reverseOrder());
         assertThat(listItem, is(listExpected));
     }
 }
