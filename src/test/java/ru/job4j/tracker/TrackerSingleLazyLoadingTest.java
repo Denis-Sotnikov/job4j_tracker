@@ -11,7 +11,7 @@ public class TrackerSingleLazyLoadingTest {
 
         TrackerSingleLazyLoading one = TrackerSingleLazyLoading.getInstance();
         TrackerSingleLazyLoading two = TrackerSingleLazyLoading.getInstance();
-        assertSame(one,two);
+        assertSame(one, two);
     }
 
 }

@@ -6,9 +6,11 @@ public class Builder extends Engineer {
     private static int finishedProject;
     private String areaJob;
     private int numberOfBuildingsBuilt;
-    Object object = new Object();
+    private Object object = new Object();
 
-    public Builder(String name, String surname, String education, String birthday, String areaJob, int numberOfBuildingsBuilt) {
+    public Builder(String name, String surname,
+                   String education, String birthday,
+                   String areaJob, int numberOfBuildingsBuilt) {
         super(name, surname, education, birthday);
         this.areaJob = areaJob;
         this.numberOfBuildingsBuilt = numberOfBuildingsBuilt;
@@ -18,6 +20,7 @@ public class Builder extends Engineer {
     public String getAreaJob() {
         return areaJob;
     }
+
     public static int getFinishedProject() {
         System.out.println("hello");
         return finishedProject;

@@ -1,5 +1,5 @@
 package ru.job4j.oop;
 
 public class Freshman extends Student {
-    int pas = 0;
+    private int pas = 0;
 }

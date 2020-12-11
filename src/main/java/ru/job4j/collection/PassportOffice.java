@@ -15,7 +15,6 @@ public class PassportOffice {
         return rsl;
     }
 
-
     public Citizen get(String passport) {
         return this.citizens.get(passport);
     }

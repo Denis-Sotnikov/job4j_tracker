@@ -24,7 +24,7 @@ public class Library {
         }
         System.out.println();
         for (int i = 0; i < biblioteka.length; i++) {
-            if (biblioteka[i].getName().equals("Clean code")){
+            if (biblioteka[i].getName().equals("Clean code")) {
                 System.out.println(biblioteka[i].getName());
             }
         }

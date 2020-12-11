@@ -1,7 +1,8 @@
 package ru.job4j.poly;
 
 public class Bus implements Transport {
-    int countOfPassengers = 0;
+    private int countOfPassengers = 0;
+
     @Override
     public void drive() {
         System.out.println("Автобус отправляется, держитесь за поручни.");

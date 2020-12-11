@@ -9,26 +9,30 @@ public class Tracker {
 
     public Item add(Item item) {
         item.setId(ids++);
-        items.add(item);//тут добавление и возможно тут ошибка, может быть добавляет в начало, а может в конец
+        items.add(item);
         return item;
     }
+
     public Item findById(int id) {
         int index = indexOf(id);
         return index != -1 ? items.get(index) : null;
     }
-    public List<Item> findAll(){
+
+    public List<Item> findAll() {
         return items;
     }
-    public List<Item> findByName(String key){
+
+    public List<Item> findByName(String key) {
         List<Item> itemsNames = new ArrayList<>();
-        int count=0;
+        int count = 0;
         for (int i = 0; i < this.items.size(); i++) {
-                    if (this.items.get(i).getName().equals(key)){
+                    if (this.items.get(i).getName().equals(key)) {
                         itemsNames.add(this.items.get(i));
                     }
         }
         return itemsNames;
     }
+
     private int indexOf(int id) {
         int rsl = -1;
         for (int index = 0; index < items.size(); index++) {
@@ -39,20 +43,22 @@ public class Tracker {
         }
         return rsl;
     }
+
     public boolean replace(int id, Item item) {
         int index = indexOf(id);
         boolean rsl = index != -1;
-        if (rsl){
+        if (rsl) {
             item.setId(id);
             this.items.set(index, item);
             return true;
         }
             return false;
     }
+
     public boolean delete(int id) {
         int index = indexOf(id);
         boolean rsl = index != -1;
-        if (rsl){
+        if (rsl) {
             items.remove(index);
             return true;
         }

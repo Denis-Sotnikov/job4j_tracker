@@ -10,14 +10,14 @@ public class Matches {
         String player = null;
         boolean flag = true;
         int count = 11;
-        while (count>0){
-            player = flag?playerOne:playerTwo;
+        while (count > 0) {
+            player = flag ? playerOne : playerTwo;
             flag = !flag;
             System.out.println("Спичек на столе " + count);
-            System.out.println(player+", возьмите спички в количестве от 1 до 3");
+            System.out.println(player + ", возьмите спички в количестве от 1 до 3");
             System.out.print("Введите количество спичек которое вы возьмете: ");
             int select = Integer.valueOf(input.nextLine());
-            while(select<1 || select>3){
+            while (select < 1 || select > 3) {
                 System.out.print("Вы ввели неправильное количество спичек. Веедите от 1 до 3: ");
                 select = Integer.valueOf(input.nextLine());
             }

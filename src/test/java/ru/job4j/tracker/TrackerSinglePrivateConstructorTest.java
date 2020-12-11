@@ -10,7 +10,7 @@ public class TrackerSinglePrivateConstructorTest {
     public void when() {
         TrackerSinglePrivateConstructor one = TrackerSinglePrivateConstructor.getInstance();
         TrackerSinglePrivateConstructor two = TrackerSinglePrivateConstructor.getInstance();
-        assertSame(one,two);
+        assertSame(one, two);
     }
 
 }

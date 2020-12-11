@@ -4,8 +4,9 @@ public class Fact {
     public static void main(String[] args) {
         System.out.println(calc(5));
     }
+
     public static int calc(int n) {
-        if (n<0){
+        if (n < 0) {
             throw new IllegalArgumentException("n<0.");
         }
         int rsl = 1;

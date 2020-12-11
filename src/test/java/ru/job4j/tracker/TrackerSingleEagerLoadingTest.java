@@ -10,6 +10,6 @@ public class TrackerSingleEagerLoadingTest {
     public void when() {
         TrackerSingleEagerLoading one = TrackerSingleEagerLoading.getInstance();
         TrackerSingleEagerLoading two = TrackerSingleEagerLoading.getInstance();
-        assertSame(one,two);
+        assertSame(one, two);
     }
 }

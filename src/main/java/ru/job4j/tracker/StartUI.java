@@ -6,6 +6,7 @@ import java.util.List;
 
 public class StartUI {
     private final Output out;
+
     public StartUI(Output out) {
         this.out = out;
     }
@@ -16,7 +17,8 @@ public class StartUI {
         Item item = new Item(name);
         tracker.add(item);
     }
-    public static void deleteItem(Input input, Tracker tracker){
+
+    public static void deleteItem(Input input, Tracker tracker) {
         int id = Integer.valueOf(input.askStr("Enter id: "));
         if (tracker.delete(id)) {
             System.out.println("Item delete success");
@@ -24,14 +26,16 @@ public class StartUI {
             System.out.println("System error");
         }
     }
-    public static void findAll(Tracker tracker){
+
+    public static void findAll(Tracker tracker) {
         System.out.println("=== Show all items ====");
         List<Item> array = tracker.findAll();
         for (int i = 0; i < array.size(); i++) {
             System.out.println(array.get(i));
         }
     }
-    public static void editItem(Input input, Tracker tracker){
+
+    public static void editItem(Input input, Tracker tracker) {
         System.out.println("=== Edit item ====");
         int id = Integer.valueOf(input.askStr("Enter id: "));
         String name = input.askStr("Enter name: ");
@@ -42,22 +46,23 @@ public class StartUI {
             System.out.println("System error");
         }
     }
-    public static void findById(Input input, Tracker tracker){
+
+    public static void findById(Input input, Tracker tracker) {
         System.out.println("=== Find item by Id ====");
         int id = Integer.valueOf(input.askStr("Enter id: "));
         Item item = tracker.findById(id);
-        if (item !=null){
+        if (item != null) {
             System.out.println(item.toString());
-        }
-        else{
+        } else {
             System.out.println("Заявка с таким id не найдена");
         }
     }
-    public static void findByName(Input input, Tracker tracker){
+
+    public static void findByName(Input input, Tracker tracker) {
         System.out.println("=== Find items by name ====");
         String name = input.askStr("Enter name: ");
         List<Item> array = tracker.findByName(name);
-        if (array.size()>0) {
+        if (array.size() > 0) {
             for (int i = 0; i < array.size(); i++) {
                 System.out.println(array.get(i).toString());
             }

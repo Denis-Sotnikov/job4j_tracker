@@ -9,7 +9,7 @@ public class NotifyAccount {
         HashSet<Account> rsl = new HashSet<>();
         // for-each accounts to HashSet;
         for (Account a : accounts) {
-            if (!rsl.contains(a)){
+            if (!rsl.contains(a)) {
                 rsl.add(a);
             }
         }

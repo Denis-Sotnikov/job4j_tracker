@@ -10,7 +10,7 @@ public class TrackerSingleEnumTest {
     public void when() {
         TrackerSingleEnum one = TrackerSingleEnum.INSTANCE;
         TrackerSingleEnum two = TrackerSingleEnum.INSTANCE;
-        assertSame(one,two);
+        assertSame(one, two);
 
 }
 }

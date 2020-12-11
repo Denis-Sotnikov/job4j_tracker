@@ -3,9 +3,11 @@ package ru.job4j.oop;
 public class Cat {
     private String food;
     private String name;
-    public void giveNick(String nick){
+
+    public void giveNick(String nick) {
         this.name = nick;
     }
+
     public void show() {
         System.out.println(this.name);
         System.out.println(this.food);

@@ -12,7 +12,7 @@ public class UserStore {
     }
 
     public static boolean validate(User user) throws UserInvalidException {
-        if (user.getUsername().length() < 3 || user.isValid() == false) {
+        if (user.getUsername().length() < 3 || !user.isValid()) {
             throw new UserInvalidException();
         }
         return false;
@@ -28,10 +28,10 @@ public class UserStore {
             if (validate(user)) {
                 System.out.println("This user has an access");
             }
-        } catch(UserInvalidException e){
+        } catch (UserInvalidException e) {
                 e.printStackTrace();
                 System.out.println("Пользователь не валидный");
-        } catch(UserNotFoundException e){
+        } catch (UserNotFoundException e) {
                 e.printStackTrace();
                 System.out.println("Пользователь не найден");
         }

@@ -14,8 +14,8 @@ public class BankService {
 
     public void addAccount(String passport, Account account) {
         User user = this.findByPassport(passport);
-        if (user != null){
-            if (!users.get(user).contains(account)){
+        if (user != null) {
+            if (!users.get(user).contains(account)) {
                 users.get(user).add(account);
             }
         }
@@ -31,7 +31,7 @@ public class BankService {
     }
 
     public Account findByRequisite(String passport, String requisite) {
-        if (this.findByPassport(passport) != null){
+        if (this.findByPassport(passport) != null) {
             List<Account> listAccounts = users.get(this.findByPassport(passport));
             for (Account ac : listAccounts) {
                  if (ac.getRequisite().equals(requisite)) {
@@ -46,7 +46,8 @@ public class BankService {
                                  String destPassport, String destRequisite, double amount) {
         Account firstAccount = findByRequisite(srcPassport, srcRequisite);
         Account secondAccount = findByRequisite(destPassport, destRequisite);
-        if (firstAccount == null || secondAccount == null || !(firstAccount.getBalance() >=amount)) {
+        if (firstAccount == null || secondAccount == null
+                || !(firstAccount.getBalance() >= amount)) {
             return false;
         }
         firstAccount.setBalance(firstAccount.getBalance() - amount);

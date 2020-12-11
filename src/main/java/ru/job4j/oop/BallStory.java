@@ -1,6 +1,7 @@
 package ru.job4j.oop;
 
 public class BallStory {
+
     public static void main(String[] args) {
         Fox fox = new Fox();
         Hare hare = new Hare();
@@ -10,6 +11,4 @@ public class BallStory {
         hare.tryEat(ball);
         wolf.tryEat(ball);
     }
-
-
 }

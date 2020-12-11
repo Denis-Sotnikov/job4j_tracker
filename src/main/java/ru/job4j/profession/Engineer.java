@@ -4,7 +4,9 @@ public class Engineer extends Profession {
     private static int finishedProject;
     private String areaJob;
 
-    public Engineer(String name, String surname, String education, String birthday, int finishedProject, String areaJob) {
+    public Engineer(String name, String surname,
+                    String education, String birthday,
+                    int finishedProject, String areaJob) {
         super(name, surname, education, birthday);
         this.finishedProject = finishedProject;
         this.areaJob = areaJob;

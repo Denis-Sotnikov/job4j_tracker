@@ -8,14 +8,18 @@ public class Item implements Comparable<Item> {
     private String name;
     private LocalDateTime created = LocalDateTime.now();
 
-    public Item(){};
-    public Item(int id){
+    public Item() {
+    }
+
+    public Item(int id) {
         this.id = id;
-    };
-    public Item(int id, String name){
+    }
+
+    public Item(int id, String name) {
         this.id = id;
         this.name = name;
-    };
+    }
+
     public Item(String name) {
         this.name = name;
     }
@@ -23,6 +27,7 @@ public class Item implements Comparable<Item> {
     public LocalDateTime getCreated() {
         return created;
     }
+
     public int getId() {
         return id;
     }
@@ -41,21 +46,29 @@ public class Item implements Comparable<Item> {
 
     @Override
     public String toString() {
-        return "Item{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", created=" + created +
-                '}';
+        return "Item{"
+                + "id="
+                + id
+                + ", name='"
+                + name
+                + '\''
+                + ", created="
+                + created
+                + '}';
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Item item = (Item) o;
-        return id == item.id &&
-                Objects.equals(name, item.name) &&
-                Objects.equals(created, item.created);
+        return id == item.id
+                && Objects.equals(name, item.name)
+                && Objects.equals(created, item.created);
     }
 
     @Override

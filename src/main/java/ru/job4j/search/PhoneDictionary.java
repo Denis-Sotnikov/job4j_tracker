@@ -12,8 +12,10 @@ public class PhoneDictionary {
     public ArrayList<Person> find(String key) {
         ArrayList<Person> result = new ArrayList<>();
         for (Person p : persons) {
-            if (p.getAddress().contains(key)||p.getName().contains(key)||
-            p.getPhone().contains(key)||p.getSurname().contains(key)){
+            if (p.getAddress().contains(key)
+                    || p.getName().contains(key)
+                    || p.getPhone().contains(key)
+                    || p.getSurname().contains(key)) {
                 result.add(p);
             }
         }

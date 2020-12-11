@@ -11,7 +11,7 @@ public class MagicBall {
         System.out.println();
         String name = input.nextLine();
         int answer = new Random().nextInt(3);
-        switch (answer){
+        switch (answer) {
             case 0:
                 System.out.println("Да");
                 break;
@@ -20,6 +20,8 @@ public class MagicBall {
                 break;
             case 2:
                 System.out.println("Может быть");
+                break;
+            default:
                 break;
         }
     }

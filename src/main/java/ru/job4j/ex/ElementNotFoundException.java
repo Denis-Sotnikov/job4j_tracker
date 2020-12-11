@@ -5,13 +5,13 @@ public class ElementNotFoundException extends Exception {
         int rsl = -1;
         int index = 0;
         for (String s : value) {
-            if(s.equals(key)){
+            if (s.equals(key)) {
                 rsl = index;
                 break;
             }
             index++;
         }
-        if (rsl == -1){
+        if (rsl == -1) {
             throw new ElementNotFoundException();
         }
         return rsl;
