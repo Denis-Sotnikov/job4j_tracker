@@ -10,7 +10,7 @@ public class DepDescComp implements Comparator<String> {
         int size = arrayLeft.length > arrayRight.length ? arrayRight.length : arrayLeft.length;
         int result = 0;
         for (int i = 0; i < size; i++) {
-            if (i==0) {
+            if (i == 0) {
                 result = arrayRight[i].compareTo(arrayLeft[i]);
                 if (result != 0) {
                     return result;
