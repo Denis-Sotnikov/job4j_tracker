@@ -3,9 +3,18 @@ package ru.job4j.lambda;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Supplier;
+
 
 public class AttachmentSort {
     public static void main(String[] args) {
+        Supplier<Integer> initValue = new Supplier<Integer>() {
+            @Override
+            public Integer get() {
+                return 0;
+            }
+        };
+
         List<Attachment> attachments = Arrays.asList(
                 new Attachment("image 4", 13),
                 new Attachment("image 1", 100),
