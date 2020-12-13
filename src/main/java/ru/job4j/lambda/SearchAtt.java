@@ -8,6 +8,12 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class SearchAtt {
+    private Predicate<Attachment> now = new Predicate<Attachment>() {
+        @Override
+        public boolean test(Attachment at) {
+            return false;
+        }
+    };
 
     public static List<Attachment> filterSize(List<Attachment> list) {
         List<Attachment> rsl = new ArrayList<>();
@@ -29,19 +35,13 @@ public class SearchAtt {
         return rsl;
     }
 
-    public static List<Attachment> filter(List<Attachment> list, Predicate now) {
+    public static List<Attachment> filter(List<Attachment> list, Predicate<Attachment> now) {
         List<Attachment> rsl = new ArrayList<>();
         for (Attachment att : list) {
-            if (now.test(att.getSize())) {
+            if (now.test(att)) {
                 rsl.add(att);
             }
         }
         return rsl;
     }
-    Predicate<Integer> now = new Predicate<Integer>() {
-        @Override
-        public boolean test(Integer integer) {
-            return false;
-        }
-    };
 }
