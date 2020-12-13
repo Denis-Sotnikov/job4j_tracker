@@ -39,6 +39,12 @@ public class AttachmentSort {
                 return left.getName().compareTo(right.getName());
             }
         };
+
+        Comparator<String> comparat = (left, right) -> {
+            System.out.println("compare - " + right.length() + " : " + left.length());
+            return right.length() - left.length();
+        };
+
         attachments.sort(comparToName);
         System.out.println(attachments);
     }
