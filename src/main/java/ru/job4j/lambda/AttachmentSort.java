@@ -48,4 +48,5 @@ public class AttachmentSort {
         attachments.sort(comparToName);
         System.out.println(attachments);
     }
+
 }
