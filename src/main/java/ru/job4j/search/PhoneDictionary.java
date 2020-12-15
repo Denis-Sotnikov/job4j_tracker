@@ -24,33 +24,14 @@ public class PhoneDictionary {
     }
 
     public ArrayList<Person> findOne(String key) {
-        Predicate<Person> findGetName = new Predicate<Person>() {
-            @Override
-            public boolean test(Person person) {
-                return person.getName().contains(key);
-            }
-        };
 
-        Predicate<Person> findGetPhone = new Predicate<Person>() {
-            @Override
-            public boolean test(Person person) {
-                return person.getPhone().contains(key);
-            }
-        };
+        Predicate<Person> findGetName = x -> x.getName().contains(key);
 
-        Predicate<Person> findGetAddress = new Predicate<Person>() {
-            @Override
-            public boolean test(Person person) {
-                return person.getAddress().contains(key);
-            }
-        };
+        Predicate<Person> findGetPhone = x -> x.getPhone().contains(key);
 
-        Predicate<Person> findGetSurname = new Predicate<Person>() {
-            @Override
-            public boolean test(Person person) {
-                return person.getSurname().contains(key);
-            }
-        };
+        Predicate<Person> findGetAddress = x -> x.getAddress().contains(key);
+
+        Predicate<Person> findGetSurname = x -> x.getSurname().contains(key);
 
         Predicate<Person> combine = findGetName
                 .or(findGetAddress
