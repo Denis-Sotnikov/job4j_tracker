@@ -16,17 +16,18 @@ public class ProfilesTest {
     public void whenTest() {
         List<Profile> inputBefore = new ArrayList<>();
         inputBefore.add(new Profile(new Address("Sankt=Peterburg", "Nevskiy prospect", 15, 10)));
-        inputBefore.add(new Profile(new Address("Sankt=Peterburg", "Ligovskiy prospect", 10, 8)));
-        inputBefore.add(new Profile(new Address("Sankt=Peterburg", "Pobedi street", 1, 105)));
-        inputBefore.add(new Profile(new Address("Sankt=Peterburg", "Mayakovskogo street", 5, 201)));
+        inputBefore.add(new Profile(new Address("Altay", "Ligovskiy prospect", 10, 8)));
+        inputBefore.add(new Profile(new Address("Sankt=Peterburg", "Nevskiy prospect", 15, 10)));
+        inputBefore.add(new Profile(new Address("Krasnoyarsk", "Pobedi street", 1, 105)));
+        inputBefore.add(new Profile(new Address("Sochi", "Mayakovskogo street", 5, 201)));
         List<Address> inputAfter = Profiles.collect(inputBefore);
+        System.out.println(inputAfter.size());
         List<Address> result = new ArrayList<>();
+        result.add(new Address("Altay", "Ligovskiy prospect", 10, 8));
+        result.add(new Address("Krasnoyarsk", "Pobedi street", 1, 105));
         result.add(new Address("Sankt=Peterburg", "Nevskiy prospect", 15, 10));
-        result.add(new Address("Sankt=Peterburg", "Ligovskiy prospect", 10, 8));
-        result.add(new Address("Sankt=Peterburg", "Pobedi street", 1, 105));
-        result.add(new Address("Sankt=Peterburg", "Mayakovskogo street", 5, 201));
-
-        assertThat(result, is(result));
+        result.add(new Address("Sochi", "Mayakovskogo street", 5, 201));
+        assertThat(inputAfter, is(result));
     }
 
 }
