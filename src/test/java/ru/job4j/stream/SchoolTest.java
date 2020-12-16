@@ -14,6 +14,7 @@ import static org.junit.Assert.*;
 
 public class SchoolTest {
     private List<Student> students = new ArrayList<>();
+    private List<Student> studentsForChechDuplicat = new ArrayList<>();
 
     @Before
     public void setUp() {
@@ -66,7 +67,18 @@ public class SchoolTest {
 
     @Test
     public void whenCollectToMap() {
-        Map<String, Student> mapStudent = School.collectToMap(students);
+        studentsForChechDuplicat.add(new Student(10, "Surname1"));
+        studentsForChechDuplicat.add(new Student(20, "Surname2"));
+        studentsForChechDuplicat.add(new Student(30, "Surname3"));
+        studentsForChechDuplicat.add(new Student(40, "Surname4"));
+        studentsForChechDuplicat.add(new Student(40, "Surname4"));
+        studentsForChechDuplicat.add(new Student(50, "Surname5"));
+        studentsForChechDuplicat.add(new Student(60, "Surname6"));
+        studentsForChechDuplicat.add(new Student(70, "Surname7"));
+        studentsForChechDuplicat.add(new Student(80, "Surname8"));
+        studentsForChechDuplicat.add(new Student(90, "Surname9"));
+        studentsForChechDuplicat.add(new Student(90, "Surname9"));
+        Map<String, Student> mapStudent = School.collectToMap(studentsForChechDuplicat);
         Map<String, Student> expected = new HashMap<>();
         expected.put("Surname1", new Student(10, "Surname1"));
         expected.put("Surname2", new Student(20, "Surname2"));
