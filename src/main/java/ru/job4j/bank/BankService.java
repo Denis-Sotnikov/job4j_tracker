@@ -1,9 +1,10 @@
 package ru.job4j.bank;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 public class BankService {
     private Map<User, List<Account>> users = new HashMap<>();
@@ -22,22 +23,29 @@ public class BankService {
     }
 
     public User findByPassport(String passport) {
-        for (User user : users.keySet()) {
-            if (user.getPassport().equals(passport)) {
-                return user;
-            }
+        try {
+            User nae = users.entrySet()
+                    .stream()
+                    .filter(e -> e.getKey()
+                            .getPassport()
+                            .equals(passport))
+                    .findFirst()
+                    .get()
+                    .getKey();
+            return nae;
+        } catch (Exception e) {
+
         }
         return null;
     }
 
     public Account findByRequisite(String passport, String requisite) {
         if (this.findByPassport(passport) != null) {
-            List<Account> listAccounts = users.get(this.findByPassport(passport));
-            for (Account ac : listAccounts) {
-                 if (ac.getRequisite().equals(requisite)) {
-                     return ac;
-                 }
-            }
+            return users.get(findByPassport(passport))
+                    .stream()
+                    .filter(e -> e.getRequisite().equals(requisite))
+                    .findFirst()
+                    .get();
         }
         return null;
     }
