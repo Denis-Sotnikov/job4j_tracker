@@ -23,20 +23,14 @@ public class BankService {
     }
 
     public User findByPassport(String passport) {
-        try {
-            User nae = users.entrySet()
+        return users.entrySet()
                     .stream()
-                    .filter(e -> e.getKey()
-                            .getPassport()
+                    .map(Map.Entry::getKey)
+                    .filter(
+                            e -> e.getPassport()
                             .equals(passport))
                     .findFirst()
-                    .get()
-                    .getKey();
-            return nae;
-        } catch (Exception e) {
-
-        }
-        return null;
+                    .orElse(null);
     }
 
     public Account findByRequisite(String passport, String requisite) {
