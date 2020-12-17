@@ -23,9 +23,8 @@ public class BankService {
     }
 
     public User findByPassport(String passport) {
-        return users.entrySet()
+        return users.keySet()
                     .stream()
-                    .map(Map.Entry::getKey)
                     .filter(
                             e -> e.getPassport()
                             .equals(passport))
@@ -34,8 +33,9 @@ public class BankService {
     }
 
     public Account findByRequisite(String passport, String requisite) {
-        if (this.findByPassport(passport) != null) {
-            return users.get(findByPassport(passport))
+        User necessaryUser = this.findByPassport(passport);
+        if (necessaryUser != null) {
+            return users.get(necessaryUser)
                     .stream()
                     .filter(e -> e.getRequisite().equals(requisite))
                     .findFirst()
