@@ -15,7 +15,7 @@ public class BankService {
 
     public void addAccount(String passport, Account account) {
         Optional<User> rsl = this.findByPassport(passport);
-        if (rsl.isPresent()){
+        if (rsl.isPresent()) {
             if (!users.get(rsl.get()).contains(account)) {
                 users.get(rsl.get()).add(account);
             }
@@ -23,17 +23,12 @@ public class BankService {
     }
 
     public Optional<User> findByPassport(String passport) {
-        Optional<User> rsl = Optional.empty();
-        User us = users.keySet()
+        return users.keySet()
                 .stream()
                 .filter(
                         e -> e.getPassport()
                                 .equals(passport))
-                .findFirst()
-                .orElse(null);
-
-        rsl = Optional.ofNullable(us);
-        return rsl;
+                .findFirst();
     }
 
     public Optional<Account> findByRequisite(String passport, String requisite) {
