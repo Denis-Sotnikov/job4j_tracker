@@ -19,11 +19,12 @@ public class JobSorterTest {
                 new Job("Fix bug", 2),
                 new Job("X task", 0)
         );
-        List<Job> expectedJobs = new ArrayList<>();
-        expectedJobs.add(new Job("X task", 0));
-        expectedJobs.add(new Job("Fix bug", 1));
-        expectedJobs.add(new Job("Fix bug", 2));
-        expectedJobs.add(new Job("Fix bug", 4));
+        List<Job> expectedJobs = List.of(
+            (new Job("X task", 0)),
+            (new Job("Fix bug", 1)),
+            (new Job("Fix bug", 2)),
+            (new Job("Fix bug", 4))
+        );
         Collections.sort(jobs, new JobSortByPriority());
         assertThat(jobs, is(expectedJobs));
     }
@@ -36,11 +37,12 @@ public class JobSorterTest {
                 new Job("Fix bug", 2),
                 new Job("X task", 0)
         );
-        List<Job> expectedJobs = new ArrayList<>();
-        expectedJobs.add(new Job("Fix bug", 4));
-        expectedJobs.add(new Job("Fix bug", 2));
-        expectedJobs.add(new Job("Fix bug", 1));
-        expectedJobs.add(new Job("X task", 0));
+        List<Job> expectedJobs = List.of(
+                (new Job("Fix bug", 4)),
+                (new Job("Fix bug", 2)),
+                (new Job("Fix bug", 1)),
+                (new Job("X task", 0))
+        );
         Collections.sort(jobs, new JobDescByPriority());
         assertThat(jobs, is(expectedJobs));
     }
@@ -53,11 +55,12 @@ public class JobSorterTest {
                 new Job("D bug", 2),
                 new Job("X task", 0)
         );
-        List<Job> expectedJobs = new ArrayList<>();
-        expectedJobs.add(new Job("A bug", 1));
-        expectedJobs.add(new Job("D bug", 2));
-        expectedJobs.add(new Job("O bug", 4));
-        expectedJobs.add(new Job("X task", 0));
+        List<Job> expectedJobs = List.of(
+                (new Job("A bug", 1)),
+                (new Job("D bug", 2)),
+                (new Job("O bug", 4)),
+                (new Job("X task", 0))
+        );
         Collections.sort(jobs, new JobSortByName());
         assertThat(jobs, is(expectedJobs));
     }
@@ -70,11 +73,12 @@ public class JobSorterTest {
                 new Job("D bug", 2),
                 new Job("X task", 0)
         );
-        List<Job> expectedJobs = new ArrayList<>();
-        expectedJobs.add(new Job("X task", 0));
-        expectedJobs.add(new Job("O bug", 4));
-        expectedJobs.add(new Job("D bug", 2));
-        expectedJobs.add(new Job("A bug", 1));
+        List<Job> expectedJobs = List.of(
+                (new Job("X task", 0)),
+                (new Job("O bug", 4)),
+                (new Job("D bug", 2)),
+                (new Job("A bug", 1))
+        );
         Collections.sort(jobs, new JobDescByName());
         assertThat(jobs, is(expectedJobs));
     }
