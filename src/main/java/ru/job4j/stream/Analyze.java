@@ -24,9 +24,10 @@ public class Analyze {
     }
 
     public static List<Tuple> averageScoreByPupil(Stream<Pupil> stream) {
-        var el = stream.flatMap(e -> e.getSubjects().stream())
-                .collect(groupingBy(Subject::getName, averagingDouble(Subject::getScore)));
-        return el
+        return stream.flatMap(e -> e.getSubjects().stream())
+                .collect(groupingBy(Subject::getName,
+                        LinkedHashMap::new,
+                        averagingDouble(Subject::getScore)))
                 .entrySet()
                 .stream()
                 .map(e -> new Tuple(
@@ -34,7 +35,6 @@ public class Analyze {
                                 e.getValue()
                         )
                 )
-                .sorted(Tuple::compareTo)
                 .collect(Collectors.toList());
     }
 
@@ -50,9 +50,8 @@ public class Analyze {
     }
 
     public static Tuple bestSubject(Stream<Pupil> stream) {
-        var el = stream.flatMap(e -> e.getSubjects().stream())
-                .collect(groupingBy(Subject::getName, summingDouble(Subject::getScore)));
-        return Optional.of(el
+        return Optional.of(stream.flatMap(e -> e.getSubjects().stream())
+                .collect(groupingBy(Subject::getName, summingDouble(Subject::getScore)))
                 .entrySet()
                 .stream()
                 .map(e -> new Tuple(
