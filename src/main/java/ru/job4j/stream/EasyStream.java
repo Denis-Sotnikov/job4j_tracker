@@ -7,7 +7,6 @@ import java.util.function.Predicate;
 
 public class EasyStream {
 
-    //private static List<Integer> listInside = new ArrayList<>();
     private List<Integer> listForObject = new ArrayList<>();
 
     public EasyStream(List<Integer> listForObject) {
@@ -15,8 +14,6 @@ public class EasyStream {
     }
 
     public static EasyStream of(List<Integer> source) {
-        //throw new UnsupportedOperationException();
-        //listInside = source;
         return new EasyStream(source);
     }
 
@@ -41,8 +38,6 @@ public class EasyStream {
     }
 
     public List<Integer> collect() {
-//
-//        throw new UnsupportedOperationException();
         return this.listForObject;
     }
 }
