@@ -17,8 +17,8 @@ public class Account {
 
     /**
      * Конструктор с двумя параметрами.
-     * @param requisite
-     * @param balance
+     * @param requisite - реквизиты
+     * @param balance - баланс
      */
     public Account(String requisite, double balance) {
         this.requisite = requisite;
@@ -35,7 +35,7 @@ public class Account {
 
     /**
      * Метод позволяет задать значение переменной объекта - requisite.
-     * @param requisite
+     * @param requisite - реквизиты
      */
     public void setRequisite(String requisite) {
         this.requisite = requisite;
@@ -51,7 +51,7 @@ public class Account {
 
     /**
      * Метод позволяет задать значение переменной объекта - balance.
-     * @param balance
+     * @param balance - баланс
      */
     public void setBalance(double balance) {
         this.balance = balance;
@@ -59,7 +59,7 @@ public class Account {
 
     /**
      * Перегруженный метод для сравнения двух объектов класса.
-     * @param o
+     * @param o - объект передаваемый для сравнения
      * @return boolean
      */
     @Override
@@ -76,7 +76,7 @@ public class Account {
 
     /**
      * Перегруженный метод для сравнения двух объектов класса через hashCode.
-     * @return
+     * @return - возвращает hashCode
      */
     @Override
     public int hashCode() {

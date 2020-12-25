@@ -13,8 +13,8 @@ public class User {
 
     /**
      * Конкруктор класса User с двумя параметрами
-     * @param passport
-     * @param username
+     * @param passport - паспорт
+     * @param username - имя поьльзователя
      */
     public User(String passport, String username) {
         this.passport = passport;
@@ -31,6 +31,7 @@ public class User {
 
     /**
      * Метод позволяет задать значение поля passport
+     * @param passport - паспорт
      */
     public void setPassport(String passport) {
         this.passport = passport;
@@ -46,7 +47,7 @@ public class User {
 
     /**
      * Метод позволяет задать значение поля Username
-     * @param username
+     * @param username - имя пользователя
      */
     public void setUsername(String username) {
         this.username = username;
@@ -54,8 +55,8 @@ public class User {
 
     /**
      * Перегруженный метод для сравнения двух объектов класса.
-     * @param o
-     * @return boolean
+     * @param o передаваемый объект для сравнения
+     * @return boolean -  - возвращает результат сравнения
      */
     @Override
     public boolean equals(Object o) {
@@ -71,7 +72,7 @@ public class User {
 
     /**
      * Перегруженный метод для сравнения двух объектов класса через hashCode.
-     * @return
+     * @return - возвращает hashCode
      */
     @Override
     public int hashCode() {

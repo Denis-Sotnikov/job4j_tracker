@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
 /**
  * Класс описывает действия с объектами User и Account.
- * Класс имеет поле Map<User, List<Account>> users, которое хранит
+ * Класс имеет поле users, которое хранит
  * в себе данные о пользователях(User) и их счетах(Account).
  * @author Denis Sotnikov
  * @version 1.0
@@ -17,7 +17,7 @@ public class BankService {
     /**
      * Метод позволяет добавить объект класса User в поле users,
      * класса BankService.
-     * @param user
+     * @param user - Пользователь
      */
 
     public void addUser(User user) {
@@ -27,8 +27,8 @@ public class BankService {
     /**
      * Метод позволяет добавить объект класса Account
      * по отношению к конкретному User.
-     * @param passport
-     * @param account
+     * @param passport - пасспорт
+     * @param account - аккаунт
      */
     public void addAccount(String passport, Account account) {
         Optional<User> rsl = this.findByPassport(passport);
@@ -42,8 +42,8 @@ public class BankService {
     /**
      * Метод позволяет найти конкретный объект класса User
      * из поля users, класса BankService.
-     * @param passport
-     * @return Optional<User>
+     * @param passport - паспорт
+     * @return Optional  - возвращает объект Optional
      */
     public Optional<User> findByPassport(String passport) {
         return users.keySet()
@@ -58,9 +58,9 @@ public class BankService {
      * Метод позволяет найти конкретный объект класса Account
      * по отношению к конкретному объекту класса User. Поиск производится
      * в поле users класса BankService.
-     * @param passport
-     * @param requisite
-     * @return Optional<Account> в случае успешного выполнения поиска.
+     * @param passport - паспорт
+     * @param requisite - реквизиты
+     * @return Optional в случае успешного выполнения поиска.
      * Если необходимый объект класса Account не найден, то метод вернет
      * Optional.empty()
      */
