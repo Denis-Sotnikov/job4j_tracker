@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
 public class MatrixTest {
-    private Integer[][] matrix = new Integer[3][3];
+    private  Integer[][] matrix = new Integer[3][3];
     private List<Integer> expected = new ArrayList<>();
 
     @Before
