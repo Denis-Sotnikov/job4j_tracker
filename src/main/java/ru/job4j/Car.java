@@ -5,7 +5,7 @@ public class Car {
     private Integer productionYear;
     private String manufacturer;
     private Integer enginePower;
-    private String KP;
+    private String kp;
     private Integer weight;
 
     public static class BuilderCar {
@@ -13,7 +13,7 @@ public class Car {
         private Integer productionYear;
         private String manufacturer;
         private Integer enginePower;
-        private String KP;
+        private String kp;
         private Integer weight;
 
         public BuilderCar buildModel(String model) {
@@ -36,8 +36,8 @@ public class Car {
             return this;
         }
 
-        public BuilderCar buildKP(String KP) {
-            this.KP = KP;
+        public BuilderCar buildKP(String kp) {
+            this.kp = kp;
             return this;
         }
 
@@ -46,11 +46,11 @@ public class Car {
             return this;
         }
 
-        public Car build(){
+        public Car build() {
             Car car = new Car();
             car.weight = weight;
             car.enginePower = enginePower;
-            car.KP = KP;
+            car.kp = kp;
             car.manufacturer = manufacturer;
             car.model = model;
             car.productionYear = productionYear;
@@ -60,14 +60,23 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car{" +
-                "model='" + model + '\'' +
-                ", productionYear=" + productionYear +
-                ", manufacturer='" + manufacturer + '\'' +
-                ", enginePower=" + enginePower +
-                ", KP='" + KP + '\'' +
-                ", weight=" + weight +
-                '}';
+        return "Car{"
+                + "model='"
+                + model
+                + '\''
+                + ", productionYear="
+                + productionYear
+                + ", manufacturer='"
+                + manufacturer
+                + '\''
+                + ", enginePower="
+                + enginePower
+                + ", KP='"
+                + kp
+                + '\''
+                + ", weight="
+                + weight
+                + '}';
     }
 
     public static void main(String[] args) {
