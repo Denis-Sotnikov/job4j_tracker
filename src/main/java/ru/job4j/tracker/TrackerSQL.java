@@ -6,13 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class SqlTracker implements Store {
+public class TrackerSQL implements AutoCloseable, Store {
+
     private Connection cn;
 
-    public SqlTracker() {
-    }
-
-    public SqlTracker(Connection connection) {
+    public TrackerSQL(Connection connection) {
         this.cn = connection;
     }
 
@@ -74,10 +72,12 @@ public class SqlTracker implements Store {
                      cn.prepareStatement("delete from items where id = ?")) {
             statement.setInt(1, Integer.parseInt(id));
             statement.execute();
-            result = true;
+            result = statement.executeUpdate() > 0;
+            System.out.println("result = " + result);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println("result = " + result);
         return result;
     }
 

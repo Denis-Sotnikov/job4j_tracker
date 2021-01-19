@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,14 +12,14 @@ public class StartUI {
         this.out = out;
     }
 
-    public static void createItem(Input input, Tracker tracker) {
+    public static void createItem(Input input, MemTracker tracker) {
         System.out.println("=== Create a new Item ====");
         String name = input.askStr("Enter name: ");
         Item item = new Item(name);
         tracker.add(item);
     }
 
-    public static void deleteItem(Input input, Tracker tracker) {
+    public static void deleteItem(Input input, MemTracker tracker) {
         int id = Integer.valueOf(input.askStr("Enter id: "));
         if (tracker.delete(id)) {
             System.out.println("Item delete success");
@@ -27,7 +28,7 @@ public class StartUI {
         }
     }
 
-    public static void findAll(Tracker tracker) {
+    public static void findAll(MemTracker tracker) {
         System.out.println("=== Show all items ====");
         List<Item> array = tracker.findAll();
         for (int i = 0; i < array.size(); i++) {
@@ -35,7 +36,7 @@ public class StartUI {
         }
     }
 
-    public static void editItem(Input input, Tracker tracker) {
+    public static void editItem(Input input, MemTracker tracker) {
         System.out.println("=== Edit item ====");
         int id = Integer.valueOf(input.askStr("Enter id: "));
         String name = input.askStr("Enter name: ");
@@ -47,7 +48,7 @@ public class StartUI {
         }
     }
 
-    public static void findById(Input input, Tracker tracker) {
+    public static void findById(Input input, MemTracker tracker) {
         System.out.println("=== Find item by Id ====");
         int id = Integer.valueOf(input.askStr("Enter id: "));
         Item item = tracker.findById(id);
@@ -58,7 +59,7 @@ public class StartUI {
         }
     }
 
-    public static void findByName(Input input, Tracker tracker) {
+    public static void findByName(Input input, MemTracker tracker) {
         System.out.println("=== Find items by name ====");
         String name = input.askStr("Enter name: ");
         List<Item> array = tracker.findByName(name);
@@ -71,7 +72,7 @@ public class StartUI {
         }
     }
 
-    public void init(Input input, Tracker tracker, List<UserAction> actions) {
+    public void init(Input input, Store tracker, List<UserAction> actions) throws SQLException {
         boolean run = true;
         while (run) {
             this.showMenu(actions);
@@ -95,15 +96,19 @@ public class StartUI {
     public static void main(String[] args) {
         Output output = new ConsoleOutput();
         Input input = new ValidateInput(output, new ConsoleInput());
-        Tracker tracker = new Tracker();
-        List<UserAction> actions = new ArrayList<>();
-        actions.add(new CreateAction(output));
-        actions.add(new DeleteAction(output));
-        actions.add(new FindAllAction(output));
-        actions.add(new ReplaceItemAction(output));
-        actions.add(new FindById(output));
-        actions.add(new FindByName(output));
-        actions.add(new ExitAction());
-        new StartUI(output).init(input, tracker, actions);
+        try (Store tracker = new SqlTracker()) {
+            tracker.init();
+            List<UserAction> actions = new ArrayList<>();
+            actions.add(new CreateAction(output));
+            actions.add(new DeleteAction(output));
+            actions.add(new FindAllAction(output));
+            actions.add(new ReplaceItemAction(output));
+            actions.add(new FindById(output));
+            actions.add(new FindByName(output));
+            actions.add(new ExitAction());
+            new StartUI(output).init(input, tracker, actions);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

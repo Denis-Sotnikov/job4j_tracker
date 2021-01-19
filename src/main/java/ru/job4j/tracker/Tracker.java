@@ -1,67 +1,46 @@
 package ru.job4j.tracker;
 
-import java.util.*;
+import java.sql.SQLException;
+import java.util.List;
 
-public class Tracker {
-    private List<Item> items = new ArrayList<>();
-    private int ids = 1;
-    private int size = 0;
+public class Tracker implements Store {
+    @Override
+    public void init() {
 
-    public Item add(Item item) {
-        item.setId(ids++);
-        items.add(item);
-        return item;
     }
 
-    public Item findById(int id) {
-        int index = indexOf(id);
-        return index != -1 ? items.get(index) : null;
+    @Override
+    public Item add(Item item) throws SQLException {
+        return null;
     }
 
-    public List<Item> findAll() {
-        return items;
-    }
-
-    public List<Item> findByName(String key) {
-        List<Item> itemsNames = new ArrayList<>();
-        int count = 0;
-        for (int i = 0; i < this.items.size(); i++) {
-                    if (this.items.get(i).getName().equals(key)) {
-                        itemsNames.add(this.items.get(i));
-                    }
-        }
-        return itemsNames;
-    }
-
-    private int indexOf(int id) {
-        int rsl = -1;
-        for (int index = 0; index < items.size(); index++) {
-            if (this.items.get(index).getId() == id) {
-                rsl = index;
-                break;
-            }
-        }
-        return rsl;
-    }
-
-    public boolean replace(int id, Item item) {
-        int index = indexOf(id);
-        boolean rsl = index != -1;
-        if (rsl) {
-            item.setId(id);
-            this.items.set(index, item);
-            return true;
-        }
-            return false;
-    }
-
-    public boolean delete(int id) {
-        int index = indexOf(id);
-        boolean rsl = index != -1;
-        if (rsl) {
-            items.remove(index);
-            return true;
-        }
+    @Override
+    public boolean replace(String id, Item item) {
         return false;
+    }
+
+    @Override
+    public boolean delete(String id) {
+        return false;
+    }
+
+    @Override
+    public List<Item> findAll() {
+        return null;
+    }
+
+    @Override
+    public List<Item> findByName(String key) {
+        return null;
+    }
+
+    @Override
+    public Item findById(String id) {
+        return null;
+    }
+
+    @Override
+    public void close() throws Exception {
+
     }
 }
