@@ -64,7 +64,6 @@ public class SqlTracker implements Store {
                      cn.prepareStatement("update items set name = ? where id = ?")) {
             statement.setString(1, item.getName());
             statement.setInt(2, Integer.parseInt(id));
-            statement.execute();
             result = statement.executeUpdate() > 0;
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,8 +77,7 @@ public class SqlTracker implements Store {
         try (PreparedStatement statement =
                      cn.prepareStatement("delete from items where id = ?")) {
             statement.setInt(1, Integer.parseInt(id));
-            statement.execute();
-            result = true;
+            result = statement.executeUpdate() > 0;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -108,7 +106,8 @@ public class SqlTracker implements Store {
     public List<Item> findByName(String key) {
         List<Item> items = new ArrayList<>();
         try (PreparedStatement statement = cn.prepareStatement(
-                "select * from items where name = '" + key + "'")) {
+                "select * from items where name = ?")) {
+            statement.setString(1, key);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                         items.add(new Item(
