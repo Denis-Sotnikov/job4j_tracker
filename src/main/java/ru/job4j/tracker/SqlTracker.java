@@ -41,7 +41,6 @@ public class SqlTracker implements Store {
 
     @Override
     public Item add(Item item) throws SQLException {
-        System.out.println(cn);
         try (PreparedStatement statement =
                      cn.prepareStatement("insert into items (name) VALUES (?)",
                              Statement.RETURN_GENERATED_KEYS)) {
@@ -112,14 +111,10 @@ public class SqlTracker implements Store {
                 "select * from items where name = '" + key + "'")) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    if (key.equals(resultSet.getString("name"))) {
                         items.add(new Item(
                                 resultSet.getInt("id"),
-                                resultSet.getString("name")
-                        ));
+                                resultSet.getString("name")));
                     }
-
-                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -135,10 +130,8 @@ public class SqlTracker implements Store {
             statement.setInt(1, Integer.parseInt(id));
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    if (Integer.parseInt(id) == (resultSet.getInt("id"))) {
                         it.setId(resultSet.getInt("id"));
                         it.setName(resultSet.getString("name"));
-                    }
                 }
             }
         } catch (SQLException throwables) {
