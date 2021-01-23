@@ -3,7 +3,7 @@ package ru.job4j;
 import java.util.*;
 
 public class Shell {
-    List<String> listString = new ArrayList<>();
+    private List<String> listString = new ArrayList<>();
 
     public void cd(String path) {
         if (listString.isEmpty()) {
@@ -27,7 +27,7 @@ public class Shell {
                     String[] arr = path.split("/");
                     for (int i = 0; i < arr.length; i++) {
                         if (!arr[i].isEmpty()) {
-                            if (!listString.get(listString.size()-1).endsWith("/")) {
+                            if (!listString.get(listString.size() - 1).endsWith("/")) {
                                 listString.add("/" + arr[i]);
                             } else {
                                 listString.add("/" + arr[i]);
@@ -35,7 +35,7 @@ public class Shell {
                         }
                     }
                 } else {
-                    int q = path.split("\\.\\.").length>0 ? path.split("\\.\\.").length : 1;
+                    int q = path.split("\\.\\.").length > 0 ? path.split("\\.\\.").length : 1;
                         int size = listString.size();
                         for (int i = size - 1; i > size - 1 - q; i--) {
                             listString.remove(i);
