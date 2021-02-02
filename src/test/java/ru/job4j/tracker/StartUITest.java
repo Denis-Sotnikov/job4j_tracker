@@ -43,7 +43,7 @@ public class StartUITest {
         tracker.add(item);
         String[] answers = {String.valueOf(item.getId())};
         StartUI.deleteItem(new StubInput(answers), tracker);
-        assertThat(tracker.findAll(), is(new Item[0]));
+        assertThat(tracker.findAll().toArray(), is(new Item[0]));
     }
 
     @Test
