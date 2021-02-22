@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
@@ -9,6 +10,9 @@ import java.util.ArrayList;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class StartUITest {
     @Test
@@ -81,6 +85,20 @@ public class StartUITest {
                 + "Item delete success" + System.lineSeparator()
                 + "Menu." + System.lineSeparator() + "0. Delete Item"
                 +  System.lineSeparator() + "1. Exit" + System.lineSeparator()));
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void whenDeleteItemWithHelpMockito() throws SQLException {
+        Output out = new StubOutput();
+        MemTracker tracker = new MemTracker();
+        Item item = tracker.add(new Item("Deleted item"));
+        Input in = mock(Input.class);
+        when(in.askStr(any(String.class))).thenReturn("0");
+        when(in.askStr(any(String.class))).thenReturn("1");
+        DeleteAction rep = new DeleteAction(out);
+        rep.execute(in, tracker);
+        assertThat((out.toString()), Matchers.is("Item delete success" + System.lineSeparator()));
+        assertThat(tracker.findAll().get(0).getName(), Matchers.is(""));
     }
 
     @Test
@@ -176,6 +194,40 @@ public class StartUITest {
                 +  System.lineSeparator()
                 + "1. Exit"
                 + System.lineSeparator()));
+    }
+
+    @Test
+    public void whenFindByIdWithHelpMockito() throws SQLException {
+        Output out = new StubOutput();
+        MemTracker tracker = new MemTracker();
+        Item item = tracker.add(new Item("Replaced item"));
+        Input input = mock(Input.class);
+        FindById rep = new FindById(out);
+        when(input.askStr(any(String.class))).thenReturn("1");
+        rep.execute(input, tracker);
+        assertThat((out.toString()), Matchers.is(
+                "=== Find item by Id ===="
+                + System.lineSeparator()
+                + item.toString()
+                + System.lineSeparator()));
+        assertThat((tracker.findById(1)), Matchers.is(item));
+    }
+
+    @Test
+    public void whenFindByNameWithHelpMockito() throws SQLException {
+        Output out = new StubOutput();
+        MemTracker tracker = new MemTracker();
+        Item item = tracker.add(new Item("New item name"));
+        String name = "New item name";
+        Input input = mock(Input.class);
+        FindByName rep = new FindByName(out);
+        when(input.askStr(any(String.class))).thenReturn(name);
+        rep.execute(input, tracker);
+        assertThat((out.toString()), Matchers.is("=== Find items by name ===="
+                + System.lineSeparator()
+                + item.toString()
+                + System.lineSeparator()));
+        assertThat((tracker.findByName(name).get(0)), Matchers.is(item));
     }
 
     @Test
