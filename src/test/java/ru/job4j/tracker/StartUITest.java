@@ -87,7 +87,7 @@ public class StartUITest {
                 +  System.lineSeparator() + "1. Exit" + System.lineSeparator()));
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test
     public void whenDeleteItemWithHelpMockito() throws SQLException {
         Output out = new StubOutput();
         MemTracker tracker = new MemTracker();
@@ -98,7 +98,7 @@ public class StartUITest {
         DeleteAction rep = new DeleteAction(out);
         rep.execute(in, tracker);
         assertThat((out.toString()), Matchers.is("Item delete success" + System.lineSeparator()));
-        assertThat(tracker.findAll().get(0).getName(), Matchers.is(""));
+        assertThat(tracker.findAll().size(), Matchers.is(0));
     }
 
     @Test
