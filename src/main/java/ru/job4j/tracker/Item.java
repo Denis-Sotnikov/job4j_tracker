@@ -1,12 +1,17 @@
 package ru.job4j.tracker;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Entity
+@Table(name = "items")
 public class Item implements Comparable<Item> {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String name;
-    private LocalDateTime created = LocalDateTime.now();
 
     public Item() {
     }
@@ -22,10 +27,6 @@ public class Item implements Comparable<Item> {
 
     public Item(String name) {
         this.name = name;
-    }
-
-    public LocalDateTime getCreated() {
-        return created;
     }
 
     public int getId() {
@@ -52,8 +53,6 @@ public class Item implements Comparable<Item> {
                 + ", name='"
                 + name
                 + '\''
-                + ", created="
-                + created
                 + '}';
     }
 
@@ -67,13 +66,12 @@ public class Item implements Comparable<Item> {
         }
         Item item = (Item) o;
         return id == item.id
-                && Objects.equals(name, item.name)
-                && Objects.equals(created, item.created);
+                && Objects.equals(name, item.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, created);
+        return Objects.hash(id, name);
     }
 
     @Override
