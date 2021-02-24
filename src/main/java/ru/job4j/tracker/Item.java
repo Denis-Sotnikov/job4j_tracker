@@ -3,7 +3,9 @@ package ru.job4j.tracker;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Objects;
+import java.util.Timer;
 
 @Entity
 @Table(name = "items")
@@ -14,9 +16,9 @@ public class Item implements Comparable<Item> {
 
     private String name;
 
-    private String description;
+    private String description = "";
 
-    private Timestamp created;
+    private Timestamp created =  new Timestamp(new Date().getTime());
 
     public Item() {
     }
@@ -61,6 +63,22 @@ public class Item implements Comparable<Item> {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Timestamp getCreated() {
+        return created;
+    }
+
+    public void setCreated(Timestamp created) {
+        this.created = created;
     }
 
     @Override

@@ -42,7 +42,6 @@ public class HibernateRun {
     public static Item create(Item item, SessionFactory sf) {
         Session session = sf.openSession();
         session.beginTransaction();
-        System.out.println("g");
         session.save(item);
         session.getTransaction().commit();
         session.close();

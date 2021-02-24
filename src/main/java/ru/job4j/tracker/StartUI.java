@@ -1,6 +1,12 @@
 package ru.job4j.tracker;
 
 
+import ru.job4j.tracker.actions.*;
+import ru.job4j.tracker.store.HbmTracker;
+import ru.job4j.tracker.store.MemTracker;
+import ru.job4j.tracker.store.SqlTracker;
+import ru.job4j.tracker.store.Store;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -96,7 +102,7 @@ public class StartUI {
     public static void main(String[] args) {
         Output output = new ConsoleOutput();
         Input input = new ValidateInput(output, new ConsoleInput());
-        try (Store tracker = new SqlTracker()) {
+        try (Store tracker = new HbmTracker()) {
             tracker.init();
             List<UserAction> actions = new ArrayList<>();
             actions.add(new CreateAction(output));
