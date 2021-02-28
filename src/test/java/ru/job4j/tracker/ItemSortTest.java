@@ -28,13 +28,16 @@ public class ItemSortTest {
     @Test
     public void whenSortById() {
         List<Item> listItem = new ArrayList<>();
-        listItem.add(new Item(5, "Aleksandra"));
-        listItem.add(new Item(1, "Viktoria"));
-        listItem.add(new Item(0, "Olga"));
+        Item aleksandr = new Item(5, "Aleksandra");
+        Item viktoria = new Item(1, "Viktoria");
+        Item olga = new Item(0, "Olga");
+        listItem.add(aleksandr);
+        listItem.add(viktoria);
+        listItem.add(olga);
         List<Item> listExpected = new ArrayList<>();
-        listExpected.add(new Item(0, "Olga"));
-        listExpected.add(new Item(1, "Viktoria"));
-        listExpected.add(new Item(5, "Aleksandra"));
+        listExpected.add(olga);
+        listExpected.add(viktoria);
+        listExpected.add(aleksandr);
         Collections.sort(listItem);
         assertThat(listItem, is(listExpected));
     }

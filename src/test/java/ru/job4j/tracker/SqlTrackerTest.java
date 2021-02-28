@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+import ru.job4j.tracker.store.SqlTracker;
 
 import java.io.InputStream;
 import java.sql.Connection;
@@ -34,6 +35,43 @@ public class SqlTrackerTest {
         try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
             tracker.add(new Item(1, "hello"));
             assertThat(tracker.findByName("hello").size(), is(1));
+        }
+    }
+
+    @Test
+    public void deleteItem() throws Exception {
+        try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
+            Item it = tracker.add(new Item(1, "desc"));
+            assertThat(tracker.findByName("desc").size(), is(1));
+            assertThat(tracker.delete(String.valueOf(it.getId())), is(true));
+        }
+    }
+
+    @Test
+    public void replaceItem() throws Exception {
+        try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
+            Item it = tracker.add(new Item(1, "desc"));
+            assertThat(tracker.findByName("desc").size(), is(1));
+            System.out.println(tracker.replace(
+                    String.valueOf(it.getId()), new Item(it.getId(), "Tonya")));
+            assertThat(tracker.findByName("Tonya").get(0), is(new Item(it.getId(), "Tonya")));
+        }
+    }
+
+    @Test
+    public void findAllItems() throws Exception {
+        try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
+            tracker.add(new Item(1, "desc"));
+            tracker.add(new Item(2, "Tonya"));
+            assertThat(tracker.findAll().size(), is(2));
+        }
+    }
+
+    @Test
+    public void findById() throws Exception {
+        try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
+            Item item = tracker.add(new Item(1, "desc"));
+            assertThat(tracker.findById(String.valueOf(item.getId())).getId(), is(item.getId()));
         }
     }
 }
