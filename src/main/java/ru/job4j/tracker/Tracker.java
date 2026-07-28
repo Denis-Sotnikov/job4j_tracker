@@ -60,10 +60,18 @@ public class Tracker {
         return index != -1 ? items[index] : null;
     }
 
+    public void delete(int id) {
+        int index = indexOf(id);
+        if (index != -1) {
+            System.arraycopy(items, index + 1, items, index, size - index - 1);
+            items[--size] = null;
+        }
+    }
+
     public boolean replace(int id, Item item) {
         Item buferItem = findById(id);
         int index = indexOf(id);
-        if (buferItem != null) {
+        if (buferItem != null && index != -1) {
             item.setId(buferItem.getId());
             items[index] = item;
             return true;
